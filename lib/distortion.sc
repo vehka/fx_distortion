@@ -50,7 +50,4 @@ FxDistortion : FxBase {
             Out.ar(outBus, wet);
         }).add;
     }
-
-    // Add any other necessary methods or overrides here...
-
 }
