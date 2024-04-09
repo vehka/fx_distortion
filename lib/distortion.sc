@@ -25,10 +25,10 @@ FxDistortion : FxBase {
     addSynthdefs {
         SynthDef(\fxDistortion, {|inBus, outBus, drive=0.5, tone=0.5, res=0.1, noise=0.0003|
             var input = In.ar(inBus, 2);
-            var wet, freq, filterType, processed;
+            var d_wet, freq, filterType, processed;
 
-            wet = HPF.ar(input, 25);
-            wet = (wet * LinExp.kr(drive, 0, 1, 1, 5)).distort;
+            d_wet = HPF.ar(input, 25);
+            d_wet = (d_wet * LinExp.kr(drive, 0, 1, 1, 5)).distort;
 
             freq = Select.kr(tone > 0.75, [
               Select.kr(tone > 0.2, [
@@ -38,8 +38,8 @@ FxDistortion : FxBase {
               LinExp.kr(tone, 0.75, 1, 20, 21000)
             ]);
             filterType = Select.kr(tone > 0.75, [0, 1]);
-            wet = DFM1.ar(
-              wet,
+            d_wet = DFM1.ar(
+              d_wet,
               freq,
               res,
               1.0,
@@ -47,7 +47,7 @@ FxDistortion : FxBase {
               noise
             ).softclip;
 
-            Out.ar(outBus, wet);
+            Out.ar(outBus, d_wet);
         }).add;
     }
 }
