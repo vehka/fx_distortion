@@ -7,7 +7,7 @@ local FxDistortion = fx:new{
 
 
 function FxDistortion:add_params()
-    params:add_separator("fx_distortion", "fx distortion")
+    params:add_group("fx_distortion", "FX Distortion", 6)
     FxDistortion:add_slot("fx_distortioon_slot", "slot")
     FxDistortion:add_control("fx_distortion_drive", "drive", "drive", controlspec.new(0, 1, 'lin', 0, 0.5))
     FxDistortion:add_control("fx_distortion_tone", "tone", "tone", controlspec.new(0, 1, 'lin', 0, 0.5))
